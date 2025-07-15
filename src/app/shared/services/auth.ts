@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class Auth {
-    private firebaseAuth = inject(FirebaseAuth);
+  private firebaseAuth = inject(FirebaseAuth);
   private userSubject = new BehaviorSubject<any>(null);
 
   async login(email: string, password: string) {

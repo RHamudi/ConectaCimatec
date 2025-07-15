@@ -1,3 +1,8 @@
-<form>
-    
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <input formControlName="name">
+    <input formControlName="email">
+    <input formControlName="password">
+    <input formControlName="role" >
+
+    <button type="submit">Enviar</button>
 </form>

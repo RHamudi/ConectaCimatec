@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Auth } from 'firebase/auth';
+import { RegisterInput } from '../../core/user/register';
+import { Auth } from '../../shared/services/auth';
 import { User } from '../../shared/services/user';
-import { Register } from '../../core/user/register';
 
 @Component({
   selector: 'app-register-user',
@@ -13,7 +13,7 @@ import { Register } from '../../core/user/register';
 export class RegisterUser {
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private userServices: User) {
+  constructor(private fb: FormBuilder,private authService: Auth, private userService: User) {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required, , Validators.email],
@@ -23,7 +23,7 @@ export class RegisterUser {
   }
 
   onSubmit(){
-    const user: Register = {
+    const user: RegisterInput = {
       email: this.userForm.value.email,
       name: this.userForm.value.name,
       password: this.userForm.value.password,
@@ -32,7 +32,19 @@ export class RegisterUser {
       skills: []
     }
     if(this.userForm.valid) {
-      console.log(this.userServices.addUser(user));
+      var credential = this.authService.createUser(user.email, user.password).then((userCredential) => {
+        const uid = userCredential.user.uid;
+
+        this.userService.addUser({
+          ...user,
+          uid: uid,
+        }).then(() => {
+          console.log('User registered successfully');
+        }).catch((error) => {
+          console.error('Error registering user:', error);
+        });
+      })
+      console.log(credential);
     }
   }
 }

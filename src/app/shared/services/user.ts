@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Database, push, ref } from '@angular/fire/database';
-import { Register } from '../../core/user/register';
+import { RegisterDB } from '../../core/user/register';
 import { set } from 'firebase/database';
 
 @Injectable({
@@ -9,9 +9,25 @@ import { set } from 'firebase/database';
 export class User {
   private db = inject(Database);
 
-  addUser(user: Register) {
-    const usersRef = ref(this.db, 'users');
-    const newUserRef = push(usersRef);
-    return set(newUserRef, user);
+  addUser(user: RegisterDB) {
+    const userRef = ref(this.db, `users/${user.uid}`);
+
+    return set(userRef, {
+      name: user.name,
+      email: user.email,// Nota: Senhas não devem ser armazenadas em texto puro!
+      role: user.role,
+      skills: user.skills || [],       // Mantém campos adicionais
+      portfolioUrl: user.portifolioUrl || [] // Corrigido nome do campo (typofix)
+    });
   }
+
+  // addUser(user: Register) {
+  //   const userKey = user.name.toLowerCase().replace(/\s+/g, '_');
+  //   const usersRef = ref(this.db, `users/${userKey}`);
+  //   const newUserRef = push(usersRef);
+  //   return set(newUserRef, {
+  //     ...user,
+  //     id: userKey
+  //   });
+  // }
 }

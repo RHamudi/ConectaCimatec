@@ -6,6 +6,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/home/home').then(m => m.Home)
     },
     {
+        path: 'homeEmpresa',
+        loadComponent: ()=> import('./features/home-empresa/home-empresa').then(m => m.HomeEmpresa)
+    },
+    {
         path: 'login',
         loadComponent: () => import('./features/login/login').then(m => m.Login)
     },

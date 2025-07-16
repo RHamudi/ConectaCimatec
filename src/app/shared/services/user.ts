@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Database, push, ref } from '@angular/fire/database';
-import { RegisterDB } from '../../core/user/register';
+import { RegisterDB } from '../../core/models/user/register';
 import { set } from 'firebase/database';
 
 @Injectable({

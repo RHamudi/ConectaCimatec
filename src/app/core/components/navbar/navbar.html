@@ -1,7 +1,28 @@
-<header class="px-30 h-15 bg-gray-200">
-    <nav class="flex items-center text-center h-full gap-20">
-        <a [routerLink]="['']" class="px-2 flex items-center h-full">Para Você</a>
-        <a [routerLink]="['homeEmpresa']">Para Empresas</a>
-        <a>Perfil Admin</a>
+<header *ngIf="route != 'login' && route != 'register'" class="bg-[#004C99]-500 flex justify-between px-30 h-15 bg-white shadow sticky top-0 z-50">
+    <nav class="flex items-center text-center h-full">
+        <ul class="flex gap-20 h-full">
+            <li class="h-full">
+                <a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="border-b-2 border-blue-500" class="flex items-center h-full">Para Você</a>
+            </li>
+            <li class="h-full">
+                <a [routerLink]="['/homeEmpresa']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="border-b-2 border-blue-500" class="flex items-center h-full">Para Empresas</a>
+            </li>
+            <li class="h-full">
+                <a class="flex items-center h-full">Perfil Admin</a>
+            </li>
+        </ul>
     </nav>
+    <div class="flex items-center text-center">
+        <ul class="flex ">
+            <li>
+                <a [routerLink]="['/login']" class="px-2 flex items-center h-full">Entrar</a>
+            </li>
+            <li>
+                <a [routerLink]="['/register']" class="px-2 flex items-center h-full">Cadastrar</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<header *ngIf="route == 'login' || route == 'register'" class="flex px-30 h-15 bg-gray-200 justify-center items-center">
+    <h1 (click)="navigateToHome()">ConectaCimatec</h1>
 </header>

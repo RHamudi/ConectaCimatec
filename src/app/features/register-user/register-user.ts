@@ -31,7 +31,6 @@ export class RegisterUser {
       portifolioUrl: [],
       skills: []
     }
-    console.log(user);
     if(this.userForm.valid) {
       var credential = this.authService.createUser(user.email, user.password).then((userCredential) => {
         const uid = userCredential.user.uid;
@@ -44,9 +43,7 @@ export class RegisterUser {
         }).catch((error) => {
           console.error('Error registering user:', error);
         });
-        
       })
-      
     }
   }
 }

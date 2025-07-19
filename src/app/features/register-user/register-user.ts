@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RegisterInput } from '../../core/models/user/register';
+import { RegisterInput, role } from '../../core/models/user/register';
 import { Auth } from '../../shared/services/auth';
 import { User } from '../../shared/services/user';
+import { Navbar } from "../../core/components/navbar/navbar";
 
 @Component({
   selector: 'app-register-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Navbar],
   templateUrl: './register-user.html',
   styleUrl: './register-user.css'
 })
@@ -18,7 +19,6 @@ export class RegisterUser {
       name: ['', Validators.required],
       email: ['', Validators.required, , Validators.email],
       password: ['', [Validators.required]],
-      role: ['', Validators.required]
     });
   }
 
@@ -27,10 +27,11 @@ export class RegisterUser {
       email: this.userForm.value.email,
       name: this.userForm.value.name,
       password: this.userForm.value.password,
-      role: this.userForm.value.role,
+      role: role.ALUNO,
       portifolioUrl: [],
       skills: []
     }
+    console.log(user);
     if(this.userForm.valid) {
       var credential = this.authService.createUser(user.email, user.password).then((userCredential) => {
         const uid = userCredential.user.uid;
@@ -43,8 +44,9 @@ export class RegisterUser {
         }).catch((error) => {
           console.error('Error registering user:', error);
         });
+        
       })
-      console.log(credential);
+      
     }
   }
 }

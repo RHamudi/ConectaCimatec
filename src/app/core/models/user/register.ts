@@ -16,8 +16,8 @@ export interface RegisterDB {
     portifolioUrl: string[]
 }
 
-enum role {
-    EMPRESA = 1,
-    ALUNO = 2,
-    ADM = 3
+export enum role {
+  EMPRESA = 'empresa',
+  ALUNO = 'aluno',
+  ADM = 'adm'
 }

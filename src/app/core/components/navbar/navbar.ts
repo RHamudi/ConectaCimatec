@@ -14,8 +14,16 @@ export class Navbar {
     this.route = this.router.url.split('/')[1] || '';
   }
 
+  get isLoggedRole(): string {
+    return localStorage.getItem('roleUser') || '';
+  }
+
   navigateToHome() {
     this.router.navigate(['']);
   }
-  // Add any methods or properties needed for the navbar functionality
+
+  getUserName(): string {
+    let {name} = JSON.parse(localStorage.getItem('user') || '{}');
+    return name;
+  }
 }

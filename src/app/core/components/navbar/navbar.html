@@ -1,4 +1,4 @@
-<header *ngIf="route != 'login' && route != 'register'" class="bg-[#004C99]-500 flex justify-between px-30 h-15 bg-white shadow sticky top-0 z-50">
+<header *ngIf="route == '' || route == 'homeEmpresa'" class="bg-[#004C99]-500 flex justify-between px-30 h-15 bg-white shadow sticky top-0 z-50">
     <nav class="flex items-center text-center h-full">
         <ul class="flex gap-20 h-full">
             <li class="h-full">
@@ -23,6 +23,15 @@
         </ul>
     </div>
 </header>
+
 <header *ngIf="route == 'login' || route == 'register'" class="flex px-30 h-15 bg-gray-200 justify-center items-center">
     <h1 (click)="navigateToHome()">ConectaCimatec</h1>
+</header>
+
+<header *ngIf="isLoggedRole == 'aluno' && route == 'jobExplorer'" class="flex justify-around items-center">
+    <h1>ConectaCimatec</h1>
+    <div class="flex items-center gap-2">
+        <img src="https://placehold.co/50x50" alt="">
+        <span>{{getUserName()}}</span>
+    </div>
 </header>

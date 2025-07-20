@@ -32,7 +32,7 @@ export class RegisterUser {
       skills: []
     }
     if(this.userForm.valid) {
-      var credential = this.authService.createUser(user.email, user.password).then((userCredential) => {
+      this.authService.createUser(user.email, user.password).then((userCredential) => {
         const uid = userCredential.user.uid;
 
         this.userService.addUser({

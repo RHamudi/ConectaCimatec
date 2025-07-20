@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth as FirebaseAuth, signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth as FirebaseAuth, signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword, UserInfo } from '@angular/fire/auth';
 import { Database } from 'firebase/database';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './user';
+import { User as FirebaseUser } from '@angular/fire/auth';
+
 
 
 @Injectable({
@@ -20,6 +22,10 @@ export class Auth {
   public authState$ = this.userSubject.asObservable();
 
   private userServices = inject(User);
+
+  public get currentUser(): FirebaseUser {
+    return this.userSubject.value.user;
+  }
 
   async createUser(email: string, password: string): Promise<UserCredential> {
     return await createUserWithEmailAndPassword(this.firebaseAuth, email, password);

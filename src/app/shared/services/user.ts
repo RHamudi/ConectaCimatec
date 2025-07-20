@@ -14,10 +14,10 @@ export class User {
 
     return set(userRef, {
       name: user.name,
-      email: user.email,// Nota: Senhas não devem ser armazenadas em texto puro!
+      email: user.email,
       role: user.role,
-      skills: user.skills || [],       // Mantém campos adicionais
-      portfolioUrl: user.portifolioUrl || [] // Corrigido nome do campo (typofix)
+      skills: user.skills || [],
+      portfolioUrl: user.portifolioUrl || []
     });
   }
 

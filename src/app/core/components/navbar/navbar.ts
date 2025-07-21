@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Auth } from '../../../shared/services/auth/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class Navbar {
   route: string = '';
-  constructor(public router: Router) { 
+  constructor(public router: Router, private authService: Auth) { 
     this.route = this.router.url.split('/')[1] || '';
   }
 
@@ -25,6 +26,11 @@ export class Navbar {
   navigateToProfile() {
     this.router.navigate(['/profile']);
     console.log('Navegando para o perfil do usuário');
+  }
+
+  logOut(){
+    this.authService.clearAuthState();
+    this.router.navigate([''])
   }
 
   getUserName(): string {

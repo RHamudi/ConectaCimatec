@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Auth } from '../../shared/services/auth/auth';
 import { User } from '../../shared/services/user';
 import { RegisterBusinessInput } from '../../core/models/user/register';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register-business',
-  imports: [Navbar, ReactiveFormsModule],
+  imports: [Navbar, ReactiveFormsModule, RouterModule],
   templateUrl: './register-business.html',
   styleUrl: './register-business.css'
 })

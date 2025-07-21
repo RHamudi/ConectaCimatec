@@ -61,7 +61,6 @@ export class EditProfile {
         : this.user.skills
     };
 
-    // Salva no Firebase
     const uid = this.auth.currentUser?.uid;
     if (uid) {
       const userRef = ref(this.db, `users/${uid}`);

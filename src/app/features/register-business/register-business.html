@@ -1,48 +1,87 @@
 <app-navbar></app-navbar>
-<body class="bg-gray-50 text-gray-800">
-    <header class="bg-white border-b shadow-sm sticky top-0 z-10">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
-        <a href="/login.html" class="text-blue-600 hover:underline">Já tem conta?</a>
-      </div>
-    </header>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-800 min-h-screen">
+  <!-- Header -->
+  <header class="bg-white border-b shadow-md sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-blue-700 tracking-tight">VagasTech</h1>
+      <a [routerLink]="['/login']" class="text-blue-600 hover:underline font-medium">Já tem conta?</a>
+    </div>
+  </header>
 
-    <main class="flex justify-center min-h-[calc(100vh-128px)] mt-10 items-center px-4">
-      <div class="bg-white p-8 rounded-lg shadow-md w-full h-max max-w-2xl">
-        <h2 class="text-2xl font-bold text-center mb-6">Cadastro de Empresa</h2>
+  <!-- Main content -->
+  <main class="flex justify-center items-center px-4 py-10">
+    <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-2xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">Cadastro de Empresa</h2>
 
-        <form class="space-y-5" [formGroup]="userForm" (ngSubmit)="onsubmit()">
-          <div>
-            <label class="block text-sm font-medium mb-1">Nome fantasia</label>
-            <input formControlName="companyName" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: Tech Solutions LTDA" required />
-          </div>
+      <form class="space-y-6" [formGroup]="userForm" (ngSubmit)="onsubmit()">
+        <!-- Nome fantasia -->
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Nome fantasia</label>
+          <input
+            formControlName="companyName"
+            type="text"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Ex: Tech Solutions LTDA"
+            required
+          />
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">CNPJ</label>
-            <input formControlName="CNPJ" type="number" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: 12.345.678/0001-90" />
-          </div>
+        <!-- CNPJ -->
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">CNPJ</label>
+          <input
+            formControlName="CNPJ"
+            type="text"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Ex: 12.345.678/0001-90"
+          />
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">E-mail</label>
-            <input formControlName="email" type="email" class="w-full border rounded-lg px-4 py-2" placeholder="empresa@email.com" required />
-          </div>
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">E-mail</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="empresa@email.com"
+            required
+          />
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">Senha</label>
-            <input formControlName="password" type="password" class="w-full border rounded-lg px-4 py-2" required />
-          </div>
+        <!-- Senha -->
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Senha</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            required
+          />
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">Localização</label>
-            <input formControlName="location" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Cidade - Estado" />
-          </div>
+        <!-- Localização -->
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Localização</label>
+          <input
+            formControlName="location"
+            type="text"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Cidade - Estado"
+          />
+        </div>
 
-          <div>
-            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
-              Cadastrar empresa
-            </button>
-          </div>
-        </form>
-      </div>
-    </main>
-  </body>
+        <!-- Botão -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
+          >
+            Cadastrar empresa
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+

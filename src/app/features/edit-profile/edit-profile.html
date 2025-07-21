@@ -1,9 +1,29 @@
-<header class="bg-white border-b shadow-sm sticky top-0 z-10">
+<header class="bg-white border-b shadow-md sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
-    <a [routerLink]="['/jobExplorer']" class="text-blue-600 hover:underline text-sm">Voltar</a>
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition duration-200">
+      Vagas<span class="text-gray-800">Tech</span>
+    </h1>
+
+    <!-- Botão de voltar -->
+    <a
+      [routerLink]="['/jobExplorer']"
+      class="text-sm text-blue-600 font-medium hover:underline hover:text-blue-700 transition duration-200 flex items-center gap-1"
+    >
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Voltar
+    </a>
   </div>
 </header>
+
 
 <div class="max-w-3xl mx-auto mt-10 px-6">
   <div class="bg-white rounded-xl shadow p-6">

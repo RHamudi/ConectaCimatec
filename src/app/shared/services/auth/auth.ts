@@ -23,6 +23,16 @@ export class Auth {
 
   public authState$ = this.userSubject.asObservable();
 
+  clearAuthState() {
+    this.userSubject.next({
+      user: null,
+      token: null,
+      authenticated: false,
+      uid: null
+    });
+    localStorage.clear();
+  }
+
   public get currentUser(): FirebaseUser {
     return this.userSubject.value.user;
   }

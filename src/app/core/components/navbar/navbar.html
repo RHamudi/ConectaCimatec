@@ -30,22 +30,60 @@
     <h1 (click)="navigateToHome()">ConectaCimatec</h1>
 </header>
 
-<header *ngIf="isLoggedRole == 'aluno' && (route == 'jobExplorer'|| route == 'profile' )" class="bg-white border-b shadow-sm sticky top-0 z-10">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
-        <div class="flex gap-4 items-center">
-          <span class="text-sm text-gray-600" (click)="navigateToProfile()">Bem-vindo, <strong>{{getUserName()}}</strong></span>
-          <button type="button" class="text-red-600 hover:underline text-sm" (click)="logOut()">Sair</button>
-        </div>
-      </div>
+<header
+  *ngIf="isLoggedRole === 'aluno' && (route === 'jobExplorer' || route === 'profile')"
+  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all"
+>
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
+      Vagas<span class="text-gray-800">Tech</span>
+    </h1>
+
+    <div class="flex gap-4 items-center">
+      <span
+        class="text-sm text-gray-700 cursor-pointer hover:text-blue-600 transition"
+        (click)="navigateToProfile()"
+      >
+        Bem-vindo, <strong>{{ getUserName() }}</strong>
+      </span>
+
+      <button
+        type="button"
+        class="text-sm text-red-600 font-medium hover:underline hover:text-red-700 transition"
+        (click)="logOut()"
+      >
+        Sair
+      </button>
+    </div>
+  </div>
 </header>
 
-<header *ngIf="isLoggedRole == 'empresa' && (route == 'publishedJobs' || route == 'registerNewJob')" class="bg-white border-b shadow-sm sticky top-0 z-10">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
-        <div class="flex gap-4 items-center">
-          <span class="text-sm text-gray-600">Bem-vindo, <strong>{{getUserName()}}</strong></span>
-          <button type="button" class="text-red-600 hover:underline text-sm" (click)="logOut()">Sair</button>
-        </div>
-      </div>
+
+<header
+  *ngIf="isLoggedRole === 'empresa' && (route === 'publishedJobs' || route === 'registerNewJob')"
+  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all"
+>
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
+      Vagas<span class="text-gray-800">Tech</span>
+    </h1>
+
+    <!-- Ações do usuário -->
+    <div class="flex gap-4 items-center">
+      <span
+        class="text-sm text-gray-700 cursor-default"
+      >
+        Bem-vindo, <strong>{{ getUserName() }}</strong>
+      </span>
+
+      <button
+        type="button"
+        class="text-sm text-red-600 font-medium hover:underline hover:text-red-700 transition"
+        (click)="logOut()"
+      >
+        Sair
+      </button>
+    </div>
+  </div>
 </header>

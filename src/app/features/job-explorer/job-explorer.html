@@ -1,29 +1,17 @@
 <app-navbar></app-navbar>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Navbar -->
-    <header class="bg-white border-b shadow-sm sticky top-0 z-10">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
-        <div class="flex gap-3">
-          <input type="text" placeholder="Cargo ou palavra-chave" class="px-4 py-2 border rounded-lg w-72" />
-          <input type="text" placeholder="Localização" class="px-4 py-2 border rounded-lg w-52" />
-          <button class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 font-medium">
-            Buscar
-          </button>
-        </div>
-      </div>
-    </header>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-800 min-h-screen">
+  <!-- Header com busca (habilite se quiser) -->
+  <!-- ... -->
 
-    <!-- Conteúdo principal -->
-    <div class="flex">
-      <!-- Sidebar Filtros -->
-      <aside class="w-64 bg-white h-[calc(100vh-80px)] sticky top-[80px] p-6 border-r shadow">
-        <h3 class="text-xl font-semibold mb-4">Filtros</h3>
+  <div class="flex">
+    <!-- ASIDE: Filtros -->
+    <aside class="w-64 bg-white sticky top-[80px] h-[calc(100vh-80px)] border-r shadow p-6 animate-fade-in-left">
+      <h3 class="text-xl font-semibold mb-6">🔎 Filtros</h3>
 
-        <!-- Tipo de vaga -->
-        <div class="mb-4">
-          <label class="block text-sm font-medium mb-1">Tipo de vaga:</label>
-          <select class="w-full border px-3 py-2 rounded">
+      <div class="space-y-4 text-sm">
+        <div>
+          <label class="font-medium block mb-1">Tipo de vaga:</label>
+          <select class="w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400 transition">
             <option value="">Todos</option>
             <option>Estágio</option>
             <option>CLT</option>
@@ -31,10 +19,9 @@
           </select>
         </div>
 
-        <!-- Modalidade -->
-        <div class="mb-4">
-          <label class="block text-sm font-medium mb-1">Modalidade:</label>
-          <select class="w-full border px-3 py-2 rounded">
+        <div>
+          <label class="font-medium block mb-1">Modalidade:</label>
+          <select class="w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400 transition">
             <option value="">Todas</option>
             <option>Remoto</option>
             <option>Presencial</option>
@@ -42,108 +29,158 @@
           </select>
         </div>
 
-        <!-- Turno -->
-        <div class="mb-4">
-          <label class="block text-sm font-medium mb-1">Turno:</label>
-          <select class="w-full border px-3 py-2 rounded">
+        <div>
+          <label class="font-medium block mb-1">Turno:</label>
+          <select class="w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-400 transition">
             <option value="">Todos</option>
             <option>Manhã</option>
             <option>Tarde</option>
             <option>Integral</option>
           </select>
         </div>
+      </div>
 
-        <!-- Botão aplicar -->
-        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          Aplicar Filtros
-        </button>
-      </aside>
+      <button class="mt-6 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200 font-semibold">
+        Aplicar Filtros
+      </button>
+    </aside>
 
-      <main class="flex-1 flex max-w-7xl mx-auto px-6 gap-6 mt-6">
-        <section class="w-1/2 bg-white rounded-lg shadow p-4 overflow-y-auto h-[calc(100vh-100px)]">
-          <h2 class="text-xl font-semibold mb-4">Vagas recomendadas</h2>
+    <!-- MAIN: Listagem e Detalhes -->
+    <main class="flex-1 flex max-w-7xl mx-auto px-6 gap-6 mt-6">
+      <!-- LISTA DE VAGAS -->
+      <section class="w-1/2 bg-white rounded-xl shadow-lg p-6 overflow-y-auto h-[calc(100vh-100px)] animate-fade-in-up">
+        <h2 class="text-xl font-bold mb-4">✨ Vagas recomendadas</h2>
 
-          <div *ngFor="let vaga of publishedJobs" (click)="selectVaga(vaga)" class="border rounded-lg p-4 mb-4 hover:shadow transition cursor-pointer">
-            <h3 class="font-semibold text-lg">{{ vaga.title }}</h3>
-            <p class="text-sm text-gray-500 mt-1"> 'Empresa não informada'</p>
-            <div class="flex items-center text-sm text-gray-400 mt-1">
-              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 11a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-              {{ vaga.location || 'Local não informado' }}
-            </div>
-            <div class="flex gap-2 mt-3 text-xs">
-              <span *ngFor="let skill of vaga.skills" class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full">{{ skill }}</span>
-            </div>
-            <div class="flex gap-2 mt-3 text-xs">
-              <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full">{{ vaga.type | titlecase }}</span>
-            </div>
+        <div *ngFor="let vaga of publishedJobs" (click)="selectVaga(vaga)"
+             class="border rounded-lg p-4 mb-4 cursor-pointer hover:shadow-md hover:scale-[1.01] transition-transform duration-200 ease-out bg-white">
+          <h3 class="font-semibold text-lg text-blue-700">{{ vaga.title }}</h3>
+          <p class="text-sm text-gray-500 mt-1">Empresa não informada</p>
+
+          <div class="mt-2 text-sm font-medium text-green-600">
+            Match: {{ calculateMatch(vaga.skills) }}%
           </div>
 
-          <div *ngIf="!publishedJobs?.length" class="text-center text-gray-400 py-10">
-            Nenhuma vaga encontrada.
-          </div>
-        </section>
-
-        <section class="flex-1 bg-white rounded-lg shadow p-6 h-[calc(100vh-100px)] overflow-y-auto" *ngIf="selectedVaga">
-          <div class="flex justify-between items-start">
-            <div>
-              <h2 class="text-2xl font-bold">{{ selectedVaga.title }}</h2>
-              <a href="#" class="text-blue-600 font-medium hover:underline mt-1 inline-block">
-                Empresa
-              </a>
-              <p class="flex items-center text-sm text-gray-500 mt-1">
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 11a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                {{ selectedVaga.location || 'Local não informado' }}
-              </p>
-            </div>
-
-            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-              Candidatar-se
-            </button>
+          <div class="flex items-center text-sm text-gray-400 mt-1">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            {{ vaga.location || 'Local não informado' }}
           </div>
 
-          <hr class="my-6" />
+          <div class="flex flex-wrap gap-2 mt-3 text-xs">
+            <span *ngFor="let skill of vaga.skills"
+                  class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full">
+              {{ skill }}
+            </span>
+          </div>
 
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-2">Requisitos do perfil</h3>
-            <p class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="mt-2 text-xs">
+            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{{ vaga.type | titlecase }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="!publishedJobs?.length" class="text-center text-gray-400 py-10">
+          Nenhuma vaga encontrada.
+        </div>
+      </section>
+
+      <!-- DETALHE DA VAGA -->
+      <section *ngIf="selectedVaga"
+               class="flex-1 bg-white rounded-xl shadow-lg p-6 h-[calc(100vh-100px)] overflow-y-auto animate-fade-in-up">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">{{ selectedVaga.title }}</h2>
+            <a href="#" class="text-blue-600 hover:underline font-medium mt-1 inline-block">Empresa</a>
+            <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 14l9-5-9-5-9 5 9 5z" />
+                      d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 14l6.16-3.422A12.083 12.083 0 0121 13.09m-9 0l-6.16-3.422A12.083 12.083 0 003 13.09m18 0v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6" />
+                      d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"/>
               </svg>
-              {{ selectedVaga.Requirements || 'Não informado' }}
+              {{ selectedVaga.location || 'Local não informado' }}
             </p>
           </div>
 
-          <div>
-            <h3 class="text-lg font-semibold mb-2">Dados da vaga</h3>
-            <ul class="text-sm space-y-2">
-              <li><strong>Tipo de vaga:</strong> {{ selectedVaga.type | titlecase }}</li>
-              <li><strong>Turno:</strong> {{ selectedVaga.shift }}</li>
-              <li><strong>Remuneração:</strong> R$ {{ selectedVaga.salary | number:'1.2-2' }}</li>
-              <li><strong>Status:</strong> {{ selectedVaga.status | titlecase }}</li>
-              <li><strong>Prazo:</strong> {{ selectedVaga.deadline | date:'dd/MM/yyyy' }}</li>
-              <li><strong>Descrição:</strong> {{ selectedVaga.description }}</li>
-            </ul>
-          </div>
-        </section>
-        <section class="flex-1 bg-white rounded-lg shadow p-6 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-lg" *ngIf="!selectedVaga">
-          Selecione uma vaga para ver os detalhes.
-        </section>
-      </main>
-    </div>
-  </body>
+          <button
+            class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-medium flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+            Candidatar-se
+          </button>
+        </div>
+
+        <hr class="my-4"/>
+
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">🎯 Requisitos do perfil</h3>
+          <p class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 14l6.16-3.422A12.083 12.083 0 0121 13.09m-9 0l-6.16-3.422A12.083 12.083 0 003 13.09m18 0v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6"/>
+            </svg>
+            {{ selectedVaga.Requirements || 'Não informado' }}
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">📋 Dados da vaga</h3>
+          <ul class="text-sm space-y-2">
+            <li><strong>Tipo de vaga:</strong> {{ selectedVaga.type | titlecase }}</li>
+            <li><strong>Turno:</strong> {{ selectedVaga.shift }}</li>
+            <li><strong>Remuneração:</strong> R$ {{ selectedVaga.salary | number:'1.2-2' }}</li>
+            <li><strong>Status:</strong> {{ selectedVaga.status | titlecase }}</li>
+            <li><strong>Prazo:</strong> {{ selectedVaga.deadline | date:'dd/MM/yyyy' }}</li>
+            <li><strong>Descrição:</strong> {{ selectedVaga.description }}</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- VAZIO -->
+      <section *ngIf="!selectedVaga"
+               class="flex-1 bg-white rounded-xl shadow p-6 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-lg animate-fade-in-up">
+        Selecione uma vaga para ver os detalhes.
+      </section>
+    </main>
+  </div>
+
+  <!-- Tailwind animation utilities -->
+  <style>
+    .animate-fade-in-up {
+      animation: fadeInUp 0.4s ease-out both;
+    }
+
+    .animate-fade-in-left {
+      animation: fadeInLeft 0.4s ease-out both;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</body>

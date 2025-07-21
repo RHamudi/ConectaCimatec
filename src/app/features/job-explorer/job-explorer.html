@@ -59,14 +59,11 @@
         </button>
       </aside>
 
-      <!-- Conteúdo das vagas e detalhes -->
       <main class="flex-1 flex max-w-7xl mx-auto px-6 gap-6 mt-6">
-        <!-- Lista de Vagas -->
         <section class="w-1/2 bg-white rounded-lg shadow p-4 overflow-y-auto h-[calc(100vh-100px)]">
           <h2 class="text-xl font-semibold mb-4">Vagas recomendadas</h2>
 
-          <!-- Cards de vaga dinâmicos -->
-          <div *ngFor="let vaga of publishedJobs" class="border rounded-lg p-4 mb-4 hover:shadow transition cursor-pointer">
+          <div *ngFor="let vaga of publishedJobs" (click)="selectVaga(vaga)" class="border rounded-lg p-4 mb-4 hover:shadow transition cursor-pointer">
             <h3 class="font-semibold text-lg">{{ vaga.title }}</h3>
             <p class="text-sm text-gray-500 mt-1"> 'Empresa não informada'</p>
             <div class="flex items-center text-sm text-gray-400 mt-1">
@@ -86,19 +83,17 @@
             </div>
           </div>
 
-          <!-- Caso não haja vagas -->
           <div *ngIf="!publishedJobs?.length" class="text-center text-gray-400 py-10">
             Nenhuma vaga encontrada.
           </div>
         </section>
 
-        <!-- Detalhes da Vaga (mantido como exemplo fixo, pode ser dinâmico depois) -->
-        <section class="flex-1 bg-white rounded-lg shadow p-6 h-[calc(100vh-100px)] overflow-y-auto">
+        <section class="flex-1 bg-white rounded-lg shadow p-6 h-[calc(100vh-100px)] overflow-y-auto" *ngIf="selectedVaga">
           <div class="flex justify-between items-start">
             <div>
-              <h2 class="text-2xl font-bold">Estagiário de Tecnologia da Informação | INAC</h2>
+              <h2 class="text-2xl font-bold">{{ selectedVaga.title }}</h2>
               <a href="#" class="text-blue-600 font-medium hover:underline mt-1 inline-block">
-                Santa Casa de Ruy Barbosa
+                Empresa
               </a>
               <p class="flex items-center text-sm text-gray-500 mt-1">
                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +102,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M15 11a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
-                Salvador, BA
+                {{ selectedVaga.location || 'Local não informado' }}
               </p>
             </div>
 
@@ -121,7 +116,6 @@
 
           <hr class="my-6" />
 
-          <!-- Informações do perfil -->
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-2">Requisitos do perfil</h3>
             <p class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
@@ -131,19 +125,24 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 14l6.16-3.422A12.083 12.083 0 0121 13.09m-9 0l-6.16-3.422A12.083 12.083 0 003 13.09m18 0v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6" />
               </svg>
-              Graduação em andamento
+              {{ selectedVaga.Requirements || 'Não informado' }}
             </p>
           </div>
 
-          <!-- Dados da vaga -->
           <div>
             <h3 class="text-lg font-semibold mb-2">Dados da vaga</h3>
             <ul class="text-sm space-y-2">
-              <li><strong>Tipo de vaga:</strong> Estágio / Meio período</li>
-              <li><strong>Turno:</strong> Segunda a sexta-feira</li>
-              <li><strong>Remuneração:</strong> R$ 1.100,00</li>
+              <li><strong>Tipo de vaga:</strong> {{ selectedVaga.type | titlecase }}</li>
+              <li><strong>Turno:</strong> {{ selectedVaga.shift }}</li>
+              <li><strong>Remuneração:</strong> R$ {{ selectedVaga.salary | number:'1.2-2' }}</li>
+              <li><strong>Status:</strong> {{ selectedVaga.status | titlecase }}</li>
+              <li><strong>Prazo:</strong> {{ selectedVaga.deadline | date:'dd/MM/yyyy' }}</li>
+              <li><strong>Descrição:</strong> {{ selectedVaga.description }}</li>
             </ul>
           </div>
+        </section>
+        <section class="flex-1 bg-white rounded-lg shadow p-6 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-lg" *ngIf="!selectedVaga">
+          Selecione uma vaga para ver os detalhes.
         </section>
       </main>
     </div>

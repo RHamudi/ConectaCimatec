@@ -19,8 +19,8 @@ export class BusinessService {
     const currentBusiness = snapshot.val();
 
     const updatedJobs = [
-    ...(currentBusiness?.publishedJobs || []), // Jobs atuais (ou array vazio se não existir)
-    newVagaRef.key                               // Novos jobs
+    ...(currentBusiness?.publishedJobs || []),
+    newVagaRef.key                               
   ];
     
     return set(newVagaRef, {
@@ -35,25 +35,22 @@ export class BusinessService {
   }
 
   async getWorksByEmpresaUid(empresaUid: string) {
-    // 1. Referência à tabela 'works'
+
     const worksRef = ref(this.db, 'works');
 
-    // 2. Cria a query para filtrar por 'empresaUid'
     const worksQuery = query(
       worksRef,
       orderByChild('empresaUid'),
       equalTo(empresaUid)
     );
 
-    // 3. Executa a consulta
     const snapshot = await get(worksQuery);
 
-    // 4. Mapeia os resultados para um array de objetos
     const worksList: Vaga[] = [];
     snapshot.forEach((childSnapshot) => {
       worksList.push({
-        id: childSnapshot.key, // ID único do trabalho
-        ...childSnapshot.val() // Dados do trabalho
+        id: childSnapshot.key,
+        ...childSnapshot.val() 
       });
     });
 

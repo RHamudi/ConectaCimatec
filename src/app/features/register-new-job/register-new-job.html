@@ -1,35 +1,29 @@
 <app-navbar></app-navbar>
  <body class="bg-gray-50 text-gray-800">
-    <!-- Conteúdo -->
     <main class="max-w-2xl mx-auto mt-10 px-6">
       <h2 class="text-2xl font-bold mb-6">Cadastrar Nova Vaga</h2>
 
       <form class="space-y-5" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-        <!-- Título -->
         <div>
           <label class="block text-sm font-medium mb-1">Título da vaga</label>
           <input formControlName="title" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: Desenvolvedor Front-End" required />
         </div>
 
-        <!-- Skills -->
         <div>
           <label class="block text-sm font-medium mb-1">Habilidades (separadas por vírgula)</label>
           <input formControlName="skills" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: React, Tailwind, Git" />
         </div>
 
-        <!-- Descrição -->
         <div>
           <label class="block text-sm font-medium mb-1">Descrição</label>
           <textarea formControlName="description" class="w-full border rounded-lg px-4 py-2 resize-none" rows="5" placeholder="Descreva a vaga, os requisitos e o que o candidato vai fazer..."></textarea>
         </div>
 
-        <!-- Location -->
         <div>
           <label class="block text-sm font-medium mb-1">Localização</label>
           <input formControlName="location" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: Salvador, BA" />
         </div>
 
-        <!-- Type -->
         <div>
           <label class="block text-sm font-medium mb-1">Tipo de trabalho</label>
           <select formControlName="type" class="w-full border rounded-lg px-4 py-2">
@@ -39,31 +33,26 @@
           </select>
         </div>
 
-        <!-- Shift -->
         <div>
           <label class="block text-sm font-medium mb-1">Turno</label>
           <input formControlName="shift" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: Manhã, Tarde, Noite" />
         </div>
 
-        <!-- Salary -->
         <div>
           <label class="block text-sm font-medium mb-1">Salário</label>
           <input formControlName="salary" type="number" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: 3500" min="0" />
         </div>
 
-        <!-- Requirements -->
         <div>
           <label class="block text-sm font-medium mb-1">Requisitos</label>
           <input formControlName="Requirements" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Ex: Experiência com Angular" />
         </div>
 
-        <!-- Deadline -->
         <div>
           <label class="block text-sm font-medium mb-1">Data limite para candidaturas</label>
           <input formControlName="deadline" type="date" class="w-full border rounded-lg px-4 py-2" required />
         </div>
 
-        <!-- Status -->
         <div>
           <label class="block text-sm font-medium mb-1">Status da vaga</label>
           <select formControlName="status" class="w-full border rounded-lg px-4 py-2">
@@ -72,7 +61,6 @@
           </select>
         </div>
 
-        <!-- Botão -->
         <div>
           <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
             Publicar Vaga

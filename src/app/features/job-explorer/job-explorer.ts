@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class JobExplorer {
   publishedJobs: Vaga[] = [];
+  selectedVaga: Vaga | null = null;
   constructor(private businessService: BusinessService) {}
 
   ngOnInit() {
@@ -19,5 +20,9 @@ export class JobExplorer {
       console.log('Vagas disponíveis:', data);
       this.publishedJobs = data;
     });
+  }
+
+  selectVaga(vaga: Vaga) {
+    this.selectedVaga = vaga;
   }
 }

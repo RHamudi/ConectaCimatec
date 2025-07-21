@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterInput, role } from '../../core/models/user/register';
-import { Auth } from '../../shared/services/auth';
+import { Auth } from '../../shared/services/auth/auth';
 import { User } from '../../shared/services/user';
 import { Navbar } from "../../core/components/navbar/navbar";
 

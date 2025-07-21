@@ -16,6 +16,26 @@ export interface RegisterDB {
     portifolioUrl: string[]
 }
 
+export interface RegisterBusiness {
+    companyName: string,
+    CNPJ: string,
+    email: string,
+    location: string,
+    publishedJobs: [],
+    siteUrl: string,
+    description: string,
+    logoUrl: string,
+    role: role
+}
+
+export interface RegisterBusinessInput {
+    companyName: string,
+    CNPJ: string,
+    email: string,
+    password: string,
+    location: string
+}
+
 export enum role {
   EMPRESA = 'empresa',
   ALUNO = 'aluno',

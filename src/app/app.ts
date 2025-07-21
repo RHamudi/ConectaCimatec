@@ -6,7 +6,7 @@ import { Form, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validat
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Auth } from './shared/services/auth';
+import { Auth } from './shared/services/auth/auth';
 
 @Component({
   selector: 'app-root',

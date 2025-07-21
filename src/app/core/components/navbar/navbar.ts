@@ -10,20 +10,42 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class Navbar {
   route: string = '';
-  constructor(private router: Router) { 
+  constructor(public router: Router) { 
     this.route = this.router.url.split('/')[1] || '';
   }
 
   get isLoggedRole(): string {
-    return localStorage.getItem('roleUser') || '';
+    return localStorage.getItem('role') || '';
   }
 
   navigateToHome() {
     this.router.navigate(['']);
   }
 
+  navigateToProfile() {
+    this.router.navigate(['/profile']);
+    console.log('Navegando para o perfil do usuário');
+  }
+
   getUserName(): string {
-    let {name} = JSON.parse(localStorage.getItem('user') || '{}');
-    return name;
+    const user = localStorage.getItem('user');
+    const business = localStorage.getItem('business');
+    if (user) {
+      try {
+        const { name } = JSON.parse(user);
+        return name;
+      } catch {
+        return '';
+      }
+    }
+    if (business) {
+      try {
+        const { companyName } = JSON.parse(business);
+        return companyName;
+      } catch {
+        return '';
+      }
+    }
+    return '';
   }
 }

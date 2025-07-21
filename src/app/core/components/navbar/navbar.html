@@ -18,20 +18,37 @@
                 <a [routerLink]="['/login']" class="px-2 flex items-center h-full">Entrar</a>
             </li>
             <li>
-                <a [routerLink]="['/register']" class="px-2 flex items-center h-full">Cadastrar</a>
+                <a
+                    [routerLink]="router.url.includes('homeEmpresa') ? '/registerBusiness' : '/register'"
+                    class="px-2 flex items-center h-full"
+                >
+                    {{ router.url.includes('homeEmpresa') ? 'Cadastre sua empresa' : 'Cadastrar' }}
+                </a>
             </li>
         </ul>
     </div>
 </header>
 
-<header *ngIf="route == 'login' || route == 'register'" class="flex px-30 h-15 bg-gray-200 justify-center items-center">
+<header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness' " class="flex px-30 h-15 bg-gray-200 justify-center items-center">
     <h1 (click)="navigateToHome()">ConectaCimatec</h1>
 </header>
 
-<header *ngIf="isLoggedRole == 'aluno' && route == 'jobExplorer'" class="flex justify-around items-center">
-    <h1>ConectaCimatec</h1>
-    <div class="flex items-center gap-2">
-        <img src="https://placehold.co/50x50" alt="">
-        <span>{{getUserName()}}</span>
-    </div>
+<header *ngIf="isLoggedRole == 'aluno' && (route == 'jobExplorer'|| route == 'profile' )" class="bg-white border-b shadow-sm sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
+        <div class="flex gap-4 items-center">
+          <span class="text-sm text-gray-600" (click)="navigateToProfile()">Bem-vindo, <strong>{{getUserName()}}</strong></span>
+          <button class="text-red-600 hover:underline text-sm">Sair</button>
+        </div>
+      </div>
+</header>
+
+<header *ngIf="isLoggedRole == 'empresa' && (route == 'publishedJobs' || route == 'registerNewJob')" class="bg-white border-b shadow-sm sticky top-0 z-10">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-600">VagasTech</h1>
+        <div class="flex gap-4 items-center">
+          <span class="text-sm text-gray-600">Bem-vindo, <strong>{{getUserName()}}</strong></span>
+          <button class="text-red-600 hover:underline text-sm">Sair</button>
+        </div>
+      </div>
 </header>

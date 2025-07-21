@@ -1,13 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { Database, push, ref } from '@angular/fire/database';
-import { RegisterDB } from '../../core/models/user/register';
+import { RegisterBusinessInput, RegisterDB } from '../../core/models/user/register';
 import { set } from 'firebase/database';
+import { Auth } from './auth/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class User {
   private db = inject(Database);
+  private authService = inject(Auth);
 
   addUser(user: RegisterDB) {
     const userRef = ref(this.db, `users/${user.uid}`);
@@ -20,6 +22,7 @@ export class User {
       portfolioUrl: user.portifolioUrl || []
     });
   }
+
 
   // addUser(user: Register) {
   //   const userKey = user.name.toLowerCase().replace(/\s+/g, '_');

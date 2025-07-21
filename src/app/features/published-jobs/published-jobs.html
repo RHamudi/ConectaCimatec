@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<body class="h-screen flex flex-col bg-gray-50 text-gray-800">
+
+  <!-- Conteúdo -->
+  <main class="flex-1 overflow-y-auto bg-gray-50 mx-7 mt-10">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold">Minhas Vagas</h2>
+      <a [routerLink]="['/registerNewJob']" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 font-medium">
+        + Cadastrar Nova Vaga
+      </a>
+    </div>
+    <div class="grid gap-5">
+      <ng-container *ngIf="publishedJobs?.length; else noJobs">
+        <div *ngFor="let vaga of publishedJobs" class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold">{{ vaga.title }}</h3>
+              <p class="text-sm text-gray-500">{{ vaga.location }}</p>
+              <div class="mt-2 flex gap-2 text-sm text-gray-600 flex-wrap">
+                <span *ngFor="let skill of vaga.skills" class="bg-gray-100 px-3 py-1 rounded-full">{{ skill }}</span>
+              </div>
+            </div>
+            <div class="text-sm text-gray-400">
+              <p><strong>Prazo:</strong> {{ vaga.deadline }}</p>
+              <p><strong>Status:</strong> {{ vaga.status  }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noJobs>
+        <div class="text-center text-gray-400 py-10">Nenhuma vaga cadastrada.</div>
+      </ng-template>
+    </div>
+  </main>
+  <router-outlet></router-outlet>

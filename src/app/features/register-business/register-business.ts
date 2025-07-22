@@ -5,10 +5,11 @@ import { Auth } from '../../shared/services/auth/auth';
 import { User } from '../../shared/services/user';
 import { RegisterBusinessInput } from '../../core/models/user/register';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register-business',
-  imports: [Navbar, ReactiveFormsModule, RouterModule],
+  imports: [Navbar, ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './register-business.html',
   styleUrl: './register-business.css'
 })
@@ -41,5 +42,9 @@ export class RegisterBusiness {
         console.error('Error registering business:', error);
       }); 
     }
+  }
+
+  navigateToHome() {
+    this.router.navigate(['']);
   }
 }

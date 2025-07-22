@@ -4,7 +4,7 @@ import { RegisterInput, role } from '../../core/models/user/register';
 import { Auth } from '../../shared/services/auth/auth';
 import { User } from '../../shared/services/user';
 import { Navbar } from "../../core/components/navbar/navbar";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 export class RegisterUser {
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private authService: Auth, private userService: User) {
+  constructor(private fb: FormBuilder,private authService: Auth, private userService: User, private router: Router) {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required, , Validators.email],
@@ -40,6 +40,7 @@ export class RegisterUser {
           ...user,
           uid: uid,
         }).then(() => {
+          this.router.navigate(['/login'])
           console.log('User registered successfully');
         }).catch((error) => {
           console.error('Error registering user:', error);

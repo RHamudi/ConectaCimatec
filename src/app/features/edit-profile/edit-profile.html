@@ -1,11 +1,9 @@
 <header class="bg-white border-b shadow-md sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <!-- Logo -->
     <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition duration-200">
       Vagas<span class="text-gray-800">Tech</span>
     </h1>
 
-    <!-- Botão de voltar -->
     <a
       [routerLink]="['/jobExplorer']"
       class="text-sm text-blue-600 font-medium hover:underline hover:text-blue-700 transition duration-200 flex items-center gap-1"
@@ -24,52 +22,153 @@
   </div>
 </header>
 
-
-<div class="max-w-3xl mx-auto mt-10 px-6">
-  <div class="bg-white rounded-xl shadow p-6">
-    <div class="flex justify-between items-start mb-6">
+<div class="h-[calc(100vh-120px)] flex items-center justify-center px-6">
+  <div class="max-w-3xl w-full bg-white rounded-2xl shadow-lg p-8">
+    <div class="flex justify-between items-center mb-6">
       <div>
-        <h2 class="text-2xl font-bold">Perfil do Usuário</h2>
+        <h2 class="text-3xl font-bold text-gray-800">Perfil do Usuário</h2>
         <p class="text-gray-500 text-sm">Informações básicas da conta</p>
       </div>
-      <button (click)="abrirModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium">
+      <button (click)="abrirModal()"
+        class="flex gap-3 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 shadow transition">
+        <svg class="w-5 h-5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path d="M192-144v-153l498-498q11-11 24-16t27-5q14 0 27 5t24 16l51 51q11 11 16 24t5 27q0 14-5 27t-16 24L345-144H192Zm72-72h51l380-380-25-26-26-25-380 380v51Zm539-491-51-51 51 51Zm-133 85-26-25 51 51-25-26ZM564-144q61 0 120.5-35.5T744-276q0-34-15.5-56.5T679-376l-54 53q25 13 36 22.5t11 24.5q0 23-35.5 41.5T564-216q-14 0-25 11t-11 25q0 15 11 25.5t25 10.5ZM216-423l56-56q-21-5-38.5-16T216-516q0-10 17.5-22.5T301-576q79-40 105-68.5t26-63.5q0-51-37.5-79.5T298-816q-41 0-78 13.5T166-767q-9 12-8 26.5t13 23.5q11 9 26.5 7.5T222-721q13-13 33-18t43-5q31 0 46.5 10.5T360-708q0 13-16.5 26.5T269-640q-70 34-97.5 61T144-516q0 29 17.5 53t54.5 40Z"/>
+        </svg>
         Editar Perfil
       </button>
     </div>
 
-    <div class="space-y-4 text-sm">
-      <div><p class="font-semibold">Nome</p><p>{{ user.name }}</p></div>
-      <div><p class="font-semibold">Email</p><p>{{ user.email }}</p></div>
-      <div><p class="font-semibold">Localização</p><p>{{ user.localizacao }}</p></div>
-      <div><p class="font-semibold">Site</p><p class="text-blue-600">{{ user.site }}</p></div>
-      <div><p class="font-semibold">Descrição</p><p>{{ user.descricao }}</p></div>
+    <div class="space-y-5 text-sm text-gray-700">
       <div>
-        <p class="font-semibold">Habilidades</p>
-        <div class="flex flex-wrap gap-2 mt-1">
-          <span *ngFor="let skill of user.skills" class="bg-gray-100 px-3 py-1 rounded-full">{{ skill }}</span>
+        <p class="font-semibold text-gray-600">Nome</p>
+        <p>{{ user.name }}</p>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-600">Email</p>
+        <p>{{ user.email }}</p>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-600">Localização</p>
+        <p>{{ user.localizacao }}</p>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-600">Site</p>
+        <a href="{{ user.site }}" target="_blank" class="text-blue-600 hover:underline">{{ user.site }}</a>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-600">Descrição</p>
+        <p class="text-justify">{{ user.descricao }}</p>
+      </div>
+      <div>
+        <p class="font-semibold text-gray-600">Habilidades</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span *ngFor="let skill of user.skills"
+            class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">{{ skill }}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div *ngIf="modalAberto" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-lg w-full max-w-xl relative shadow-xl">
-    <h3 class="text-xl font-semibold mb-4">Editar Perfil</h3>
 
-    <form [formGroup]="form" (ngSubmit)="salvar()" class="space-y-4">
-      <input formControlName="name" type="text" class="w-full border px-4 py-2 rounded" placeholder="Nome" />
-      <input formControlName="localizacao" type="text" class="w-full border px-4 py-2 rounded" placeholder="Localização" />
-      <input formControlName="site" type="url" class="w-full border px-4 py-2 rounded" placeholder="Site" />
-      <textarea formControlName="descricao" rows="3" class="w-full border px-4 py-2 rounded" placeholder="Descrição"></textarea>
-      <input formControlName="skills" type="text" class="w-full border px-4 py-2 rounded" placeholder="Skills (separadas por vírgula)" />
 
-      <div class="flex justify-end gap-2 pt-4">
-        <button type="button" (click)="fecharModal()" class="px-4 py-2 rounded border hover:bg-gray-100">Cancelar</button>
-        <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Salvar</button>
+<div
+  *ngIf="modalAberto"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300 ease-in-out"
+>
+  <div
+    class="bg-white rounded-2xl p-8 w-full max-w-xl relative shadow-2xl transform transition-all duration-300 ease-in-out scale-95 animate-fadeIn"
+  >
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Editar Perfil</h3>
+
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="space-y-4 text-sm text-gray-700">
+      
+      <!-- Nome -->
+      <div>
+        <label class="block font-medium mb-1" for="name">Nome</label>
+        <input
+          id="name"
+          formControlName="name"
+          type="text"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          placeholder="Ex: João Silva"
+        />
+      </div>
+
+      <!-- Localização -->
+      <div>
+        <label class="block font-medium mb-1" for="localizacao">Localização</label>
+        <input
+          id="localizacao"
+          formControlName="localizacao"
+          type="text"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          placeholder="Ex: Salvador - BA"
+        />
+      </div>
+
+      <!-- Site -->
+      <div>
+        <label class="block font-medium mb-1" for="site">Site</label>
+        <input
+          id="site"
+          formControlName="site"
+          type="url"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          placeholder="Ex: https://meusite.com"
+        />
+      </div>
+
+      <!-- Descrição -->
+      <div>
+        <label class="block font-medium mb-1" for="descricao">Descrição</label>
+        <textarea
+          id="descricao"
+          formControlName="descricao"
+          rows="3"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+          placeholder="Fale um pouco sobre você..."
+        ></textarea>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <label class="block font-medium mb-1" for="skills">Habilidades (skills)</label>
+        <input
+          id="skills"
+          formControlName="skills"
+          type="text"
+          class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          placeholder="Ex: JavaScript, Angular, Firebase"
+        />
+      </div>
+
+      <!-- Ações -->
+      <div class="flex justify-end gap-3 pt-4">
+        <button
+          type="button"
+          (click)="fecharModal()"
+          class="px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold transition"
+        >
+          Salvar
+        </button>
       </div>
     </form>
 
-    <button (click)="fecharModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+    <!-- Botão de fechar -->
+    <button
+      (click)="fecharModal()"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl leading-none focus:outline-none transition"
+      aria-label="Fechar"
+    >
+      &times;
+    </button>
   </div>
 </div>
+

@@ -1,10 +1,7 @@
 <app-navbar></app-navbar>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 text-gray-800 min-h-screen">
-  <!-- Header com busca (habilite se quiser) -->
-  <!-- ... -->
 
   <div class="flex">
-    <!-- ASIDE: Filtros -->
     <aside class="w-64 bg-white sticky top-[80px] h-[calc(100vh-80px)] border-r shadow p-6 animate-fade-in-left">
       <h3 class="text-xl font-semibold mb-6">🔎 Filtros</h3>
 
@@ -45,9 +42,7 @@
       </button>
     </aside>
 
-    <!-- MAIN: Listagem e Detalhes -->
     <main class="flex-1 flex max-w-7xl mx-auto px-6 gap-6 mt-6">
-      <!-- LISTA DE VAGAS -->
       <section class="w-1/2 bg-white rounded-xl shadow-lg p-6 overflow-y-auto h-[calc(100vh-100px)] animate-fade-in-up">
         <h2 class="text-xl font-bold mb-4">✨ Vagas recomendadas</h2>
 
@@ -87,12 +82,11 @@
         </div>
       </section>
 
-      <!-- DETALHE DA VAGA -->
       <section *ngIf="selectedVaga"
                class="flex-1 bg-white rounded-xl shadow-lg p-6 h-[calc(100vh-100px)] overflow-y-auto animate-fade-in-up">
         <div class="flex justify-between items-start mb-4">
           <div>
-            <h2 class="text-2xl font-bold text-gray-800">{{ selectedVaga.title }}</h2>
+            <h2 class="text-2xl font-bold w-70 text-gray-800">{{ selectedVaga.title }}</h2>
             <a href="#" class="text-blue-600 hover:underline font-medium mt-1 inline-block">Empresa</a>
             <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,7 +113,6 @@
           </button>
         </div>
 
-        <!-- Aviso de candidatura -->
         <div *ngIf="jaAplicouNaVaga()" class="mt-4 px-4 py-2 rounded-lg bg-red-400 text-black-700 flex items-center gap-2 font-semibold shadow">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -156,7 +149,6 @@
         </div>
       </section>
 
-      <!-- VAZIO -->
       <section *ngIf="!selectedVaga"
                class="flex-1 bg-white rounded-xl shadow p-6 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-lg animate-fade-in-up">
         Selecione uma vaga para ver os detalhes.
@@ -164,7 +156,6 @@
     </main>
   </div>
 
-  <!-- Tailwind animation utilities -->
   <style>
     .animate-fade-in-up {
       animation: fadeInUp 0.4s ease-out both;

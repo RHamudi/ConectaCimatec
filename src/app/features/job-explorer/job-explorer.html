@@ -106,13 +106,26 @@
           </div>
 
           <button
-            class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-medium flex items-center gap-2">
+            class="px-6 py-2 rounded-lg font-medium flex items-center gap-2 transition
+                   bg-blue-600 text-white hover:bg-blue-700
+                   disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-70"
+            [disabled]="jaAplicouNaVaga()"
+            (click)="aplicarNaVaga()">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
             Candidatar-se
           </button>
+        </div>
+
+        <!-- Aviso de candidatura -->
+        <div *ngIf="jaAplicouNaVaga()" class="mt-4 px-4 py-2 rounded-lg bg-red-400 text-black-700 flex items-center gap-2 font-semibold shadow">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 13l4 4L19 7"/>
+          </svg>
+          Você já se candidatou a esta vaga!
         </div>
 
         <hr class="my-4"/>

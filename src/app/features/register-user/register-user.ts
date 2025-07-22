@@ -4,10 +4,11 @@ import { RegisterInput, role } from '../../core/models/user/register';
 import { Auth } from '../../shared/services/auth/auth';
 import { User } from '../../shared/services/user';
 import { Navbar } from "../../core/components/navbar/navbar";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
-  imports: [ReactiveFormsModule, Navbar],
+  imports: [ReactiveFormsModule, Navbar, RouterModule],
   templateUrl: './register-user.html',
   styleUrl: './register-user.css'
 })

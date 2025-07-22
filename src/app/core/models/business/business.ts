@@ -23,5 +23,6 @@ export interface Vaga {
   type: 'presencial' | 'remoto' | 'híbrido';
   shift: string;
   salary: number;
-  Requirements: string; // tipo de trabalho
+  Requirements: string;
+  applications: []; // tipo de trabalho
 };

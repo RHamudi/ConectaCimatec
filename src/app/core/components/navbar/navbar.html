@@ -26,8 +26,13 @@
     </div>
 </header>
 
-<header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness'" class="flex px-30 h-15 bg-gray-200 justify-center items-center">
-    <h1 (click)="navigateToHome()">ConectaCimatec</h1>
+<header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness'" class="w-full h-16 bg-white shadow-md flex items-center justify-center px-6">
+  <h1 
+    class="text-xl font-bold text-blue-700 cursor-pointer hover:underline transition"
+    (click)="navigateToHome()"
+  >
+    ConectaCimatec
+  </h1>
 </header>
 
 <header

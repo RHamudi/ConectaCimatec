@@ -5,12 +5,13 @@ import { Navbar } from "../../core/components/navbar/navbar";
 import { Router, RouterModule } from '@angular/router';
 import { Database, get, ref } from '@angular/fire/database';
 import { user } from '@angular/fire/auth';
+import { JobExplorer } from "../job-explorer/job-explorer";
 
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, Navbar, RouterModule],
+  imports: [ReactiveFormsModule, Navbar, RouterModule, JobExplorer],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })

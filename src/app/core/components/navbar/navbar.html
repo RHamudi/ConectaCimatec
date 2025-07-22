@@ -1,30 +1,75 @@
-<header *ngIf="route == '' || route == 'homeEmpresa'" class="bg-[#004C99]-500 flex justify-between px-30 h-15 bg-white shadow sticky top-0 z-50">
-    <nav class="flex items-center text-center h-full">
-        <ul class="flex gap-20 h-full">
-            <li class="h-full">
-                <a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="border-b-2 border-blue-500" class="flex items-center h-full">Para Você</a>
-            </li>
-            <li class="h-full">
-                <a [routerLink]="['/homeEmpresa']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="border-b-2 border-blue-500" class="flex items-center h-full">Para Empresas</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="flex items-center text-center">
-        <ul class="flex ">
-            <li>
-                <a [routerLink]="['/login']" class="px-2 flex items-center h-full">Entrar</a>
-            </li>
-            <li>
-                <a
-                    [routerLink]="router.url.includes('homeEmpresa') ? '/registerBusiness' : '/register'"
-                    class="px-2 flex items-center h-full"
-                >
-                    {{ router.url.includes('homeEmpresa') ? 'Cadastre sua empresa' : 'Cadastrar' }}
-                </a>
-            </li>
-        </ul>
-    </div>
+<header *ngIf="route == '' || route == 'homeEmpresa'" class="bg-white shadow-md sticky top-0 z-50 h-16 flex justify-between items-center px-10 md:px-20">
+  
+  <!-- Navegação principal -->
+  <nav class="h-full flex items-center">
+    <ul class="flex gap-10 h-full">
+      
+      <!-- Para Você -->
+      <li class="h-full">
+        <a
+          [routerLink]="['']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="text-blue-700 font-medium"
+          class="relative flex items-center h-full px-2 text-gray-700 group transition"
+        >
+          Para Você
+          <span
+            class="absolute bottom-0 left-0 h-0.5 bg-blue-500 transition-all duration-300 ease-in-out"
+            [ngClass]="{
+              'w-full': router.url === '/',
+              'w-0 group-hover:w-full': router.url !== '/'
+            }"
+          ></span>
+        </a>
+      </li>
+
+      <!-- Para Empresas -->
+      <li class="h-full">
+        <a
+          [routerLink]="['/homeEmpresa']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="text-blue-700 font-medium"
+          class="relative flex items-center h-full px-2 text-gray-700 group transition"
+        >
+          Para Empresas
+          <span
+            class="absolute bottom-0 left-0 h-0.5 bg-blue-500 transition-all duration-300 ease-in-out"
+            [ngClass]="{
+              'w-full': router.url === '/homeEmpresa',
+              'w-0 group-hover:w-full': router.url !== '/homeEmpresa'
+            }"
+          ></span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- Login / Cadastro -->
+  <div class="flex items-center">
+    <ul class="flex gap-4">
+      <li>
+        <a 
+          [routerLink]="['/login']" 
+          class="px-2 flex items-center h-full hover:text-blue-700 transition"
+        >
+          Entrar
+        </a>
+      </li>
+      <li>
+        <a 
+          [routerLink]="router.url.includes('homeEmpresa') ? '/registerBusiness' : '/register'" 
+          class="px-2 flex items-center h-full hover:text-blue-700 transition font-medium"
+        >
+          {{ router.url.includes('homeEmpresa') ? 'Cadastre sua empresa' : 'Cadastrar' }}
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
+
+
+
 
 <header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness'" class="w-full h-16 bg-white shadow-md flex items-center justify-center px-6">
   <h1 

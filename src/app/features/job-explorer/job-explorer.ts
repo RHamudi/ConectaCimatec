@@ -82,6 +82,13 @@ export class JobExplorer {
         applications
       });
 
+      // Atualiza as vagas após aplicar
+      this.businessService.getAllWorks().then((data) => {
+        this.publishedJobs = data;
+        // Atualiza a vaga selecionada para refletir as novas aplicações
+        this.selectedVaga = this.publishedJobs.find(v => v.uid === vagaUid) || null;
+      });
+
       alert('Aplicação enviada com sucesso!');
     } catch (error: any) {
       if (error?.code === 'PERMISSION_DENIED') {

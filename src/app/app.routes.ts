@@ -36,5 +36,9 @@ export const routes: Routes = [
     {
         path: 'profile',
         loadComponent: () => import('./features/edit-profile/edit-profile').then(m => m.EditProfile)
+    },
+    {
+        path: 'editJob/:id',
+        loadComponent: () => import('./features/edit-job/edit-job').then(m => m.EditJob)
     }
 ];

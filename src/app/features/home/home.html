@@ -1,32 +1,51 @@
 <app-navbar></app-navbar>
 <main>
-  <section class="bg-blue-600 text-white py-24 text-center px-6">
-    <h1 class="text-5xl font-bold leading-tight">Conectando Talentos</h1>
-    <h2 class="text-xl font-medium mt-4">Do CIMATEC para o mercado</h2>
-    <button class="mt-8 bg-white text-blue-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">
-      Ver Vagas
-    </button>
+  <section class="bg-blue-600 text-white px-6 md:px-20 py-24">
+    <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
+
+      <!-- Texto -->
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-5xl lg:text-5xl font-extrabold leading-tight">
+          Conectando Talentos<br />
+          do CIMATEC para o mercado
+        </h1>
+        <ul class="mt-6 space-y-2 text-white text-lg md:text-xl list-disc list-inside">
+          <li>Vagas reais de empresas parceiras</li>
+          <li>Perfil único e centralizado</li>
+          <li>Recomendações baseadas no seu perfil</li>
+        </ul>
+        <button class="mt-8 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition duration-200 shadow text-lg md:text-xl">
+          Ver Vagas →
+        </button>
+      </div>
+
+      <!-- Imagem -->
+      <div class="md:w-1/2">
+        <img src="home.png" alt="CIMATEC" class="w-full h-110 object-contain drop-shadow-xl">
+      </div>
+
+    </div>
   </section>
 
   <section class="py-16 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <span class="material-symbols-outlined text-5xl text-blue-600 mb-3" style="font-size: 40px;">work</span>
-        <h3 class="text-lg font-semibold mb-2">Vagas Reais</h3>
-        <p class="text-sm text-gray-600">Oportunidades publicadas diretamente por empresas parceiras do CIMATEC.</p>
+      <div class="bg-white p-8 rounded-xl shadow hover:shadow-lg transition text-lg">
+        <span class="material-symbols-outlined text-6xl text-blue-600 mb-4" style="font-size: 48px;">work</span>
+        <h3 class="text-xl font-semibold mb-3">Vagas Reais</h3>
+        <p class="text-base text-gray-600">Oportunidades publicadas diretamente por empresas parceiras do CIMATEC.</p>
       </div>
   
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <span class="material-symbols-outlined text-5xl text-blue-600 mb-3" style="font-size: 40px;">person</span>
-        <h3 class="text-lg font-semibold mb-2">Perfil Único</h3>
-        <p class="text-sm text-gray-600">Seu perfil acadêmico e profissional em um só lugar, atualizado e atrativo.</p>
+      <div class="bg-white p-8 rounded-xl shadow hover:shadow-lg transition text-lg">
+        <span class="material-symbols-outlined text-6xl text-blue-600 mb-4" style="font-size: 48px;">person</span>
+        <h3 class="text-xl font-semibold mb-3">Perfil Único</h3>
+        <p class="text-base text-gray-600">Seu perfil acadêmico e profissional em um só lugar, atualizado e atrativo.</p>
       </div>
   
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-        <span class="material-symbols-outlined text-5xl text-blue-600 mb-3" style="font-size: 40px;">recommend</span>
-        <h3 class="text-lg font-semibold mb-2">Recomendações</h3>
-        <p class="text-sm text-gray-600">Receba sugestões de vagas com base no seu perfil e habilidades.</p>
+      <div class="bg-white p-8 rounded-xl shadow hover:shadow-lg transition text-lg">
+        <span class="material-symbols-outlined text-6xl text-blue-600 mb-4" style="font-size: 48px;">recommend</span>
+        <h3 class="text-xl font-semibold mb-3">Recomendações</h3>
+        <p class="text-base text-gray-600">Receba sugestões de vagas com base no seu perfil e habilidades.</p>
       </div>
   
     </div>
@@ -35,31 +54,31 @@
 
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-2xl font-bold text-center mb-10">Como Funciona</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+      <h2 class="text-3xl font-bold text-center mb-12">Como Funciona</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         <div class="flex flex-col items-center">
-          <span class="material-symbols-outlined text-8xl mb-3 text-blue-600" style="font-size: 50px;">
+          <span class="material-symbols-outlined text-8xl mb-4 text-blue-600" style="font-size: 56px;">
             person_add
           </span>
-          <h3 class="font-semibold">1. Crie sua conta</h3>
+          <h3 class="font-semibold text-lg md:text-xl">1. Crie sua conta</h3>
         </div>
         <div class="flex flex-col items-center">
-          <span class="material-symbols-outlined text-8xl mb-3 text-blue-600" style="font-size: 50px;">
+          <span class="material-symbols-outlined text-8xl mb-4 text-blue-600" style="font-size: 56px;">
             person
           </span>
-          <h3 class="font-semibold">2. Preencha seu perfil</h3>
+          <h3 class="font-semibold text-lg md:text-xl">2. Preencha seu perfil</h3>
         </div>
         <div class="flex flex-col items-center">
-          <span class="material-symbols-outlined text-8xl mb-3 text-blue-600" style="font-size: 50px;">
+          <span class="material-symbols-outlined text-8xl mb-4 text-blue-600" style="font-size: 56px;">
             search
           </span>
-          <h3 class="font-semibold">3. Busque vagas</h3>
+          <h3 class="font-semibold text-lg md:text-xl">3. Busque vagas</h3>
         </div>
         <div class="flex flex-col items-center">
-          <span class="material-symbols-outlined text-8xl mb-3 text-blue-600" style="font-size: 50px;">
+          <span class="material-symbols-outlined text-8xl mb-4 text-blue-600" style="font-size: 56px;">
             how_to_reg
           </span>
-          <h3 class="font-semibold">4. Candidate-se</h3>
+          <h3 class="font-semibold text-lg md:text-xl">4. Candidate-se</h3>
         </div>
         
       </div>

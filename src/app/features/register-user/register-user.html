@@ -29,9 +29,24 @@
       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm"
     />
 
+    <div class="flex items-center gap-2">
+      <input 
+        type="checkbox" 
+        formControlName="privacyPolicy" 
+        id="privacyPolicy"
+        class="w-5 h-5 accent-blue-600"
+        required
+      />
+      <label for="privacyPolicy" class="text-sm text-gray-700">
+        Li e concordo com a <a class="text-blue-600 hover:underline">Política de Privacidade</a>
+      </label>
+    </div>
+
     <button 
       type="submit" 
-      class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200"
+      class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200
+             disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-70"
+      [disabled]="!userForm.get('privacyPolicy')?.value"
     >
       Enviar
     </button>

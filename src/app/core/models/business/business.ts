@@ -9,6 +9,7 @@ export interface Business {
     shift: string;
     salary: number;
     Requirements: string;
+    businessName: string;
 }
 
 export interface Vaga {
@@ -24,5 +25,6 @@ export interface Vaga {
   shift: string;
   salary: number;
   Requirements: string;
-  applications: []; // tipo de trabalho
+  applications: [];
+  businessName: string; // tipo de trabalho
 };

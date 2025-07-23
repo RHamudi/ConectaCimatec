@@ -43,53 +43,69 @@
     </aside>
 
     <main class="flex-1 flex max-w-7xl mx-auto px-6 gap-6 mt-6">
-      <section class="w-1/2 bg-white rounded-xl shadow-lg p-6 overflow-y-auto h-[calc(100vh-100px)] animate-fade-in-up">
-        <h2 class="text-xl font-bold mb-4">✨ Vagas recomendadas</h2>
+      <section class="w-1/2 bg-white rounded-2xl shadow-2xl p-8 overflow-y-auto h-[calc(100vh-100px)] animate-fade-in-up">
+        <h2 class="text-2xl font-bold mb-6">✨ Vagas recomendadas</h2>
 
         <div *ngFor="let vaga of publishedJobs" (click)="selectVaga(vaga)"
-             class="border rounded-lg p-4 mb-4 cursor-pointer hover:shadow-md hover:scale-[1.01] transition-transform duration-200 ease-out bg-white">
-          <h3 class="font-semibold text-lg text-blue-700">{{ vaga.title }}</h3>
-          <p class="text-sm text-gray-500 mt-1">Empresa não informada</p>
-
-          <div class="mt-2 text-sm font-medium text-green-600">
-            Match: {{ calculateMatch(vaga.skills) }}%
+             class="border rounded-2xl p-6 mb-6 cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-transform duration-200 ease-out bg-white flex justify-between items-center text-lg">
+          <div>
+            <h3 class="font-semibold text-xl text-blue-700">{{ vaga.title }}</h3>
+            <p class="text-base text-gray-500 mt-1">{{vaga.businessName }}</p>
+            <div class="flex items-center text-base text-gray-400 mt-1">
+              <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              {{ vaga.location || 'Local não informado' }}
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4 text-base">
+              <span *ngFor="let skill of vaga.skills"
+                    class="bg-gray-200 text-gray-700 px-3 py-2 rounded-full">
+                {{ skill }}
+              </span>
+            </div>
+            <div class="mt-3 text-base">
+              <span class="bg-blue-100 text-blue-700 px-3 py-2 rounded-full">{{ vaga.type | titlecase }}</span>
+            </div>
           </div>
-
-          <div class="flex items-center text-sm text-gray-400 mt-1">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"/>
+          <div class="ml-6 flex flex-col items-end">
+            <div class="flex items-center gap-3 mt-2">
+          <div class="relative w-14 h-14">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+              <path class="text-gray-200" stroke-width="4" stroke="currentColor" fill="none"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="text-green-500 transition-all duration-500" stroke-width="4"
+                    [attr.stroke-dasharray]="'100, 100'"
+                    [attr.stroke-dashoffset]="100 - calculateMatch(vaga.skills)"
+                    stroke="currentColor" fill="none"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
             </svg>
-            {{ vaga.location || 'Local não informado' }}
+            <div class="absolute inset-0 flex items-center justify-center text-base font-bold text-green-600">
+              {{ calculateMatch(vaga.skills) }}%
+            </div>
           </div>
-
-          <div class="flex flex-wrap gap-2 mt-3 text-xs">
-            <span *ngFor="let skill of vaga.skills"
-                  class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full">
-              {{ skill }}
-            </span>
+          <div class="text-base font-medium text-green-600">
+            Match
           </div>
-
-          <div class="mt-2 text-xs">
-            <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{{ vaga.type | titlecase }}</span>
+        </div>
           </div>
         </div>
 
-        <div *ngIf="!publishedJobs?.length" class="text-center text-gray-400 py-10">
+        <div *ngIf="!publishedJobs?.length" class="text-center text-gray-400 py-10 text-xl">
           Nenhuma vaga encontrada.
         </div>
       </section>
 
       <section *ngIf="selectedVaga"
-               class="flex-1 bg-white rounded-xl shadow-lg p-6 h-[calc(100vh-100px)] overflow-y-auto animate-fade-in-up">
-        <div class="flex justify-between items-start mb-4">
+           class="flex-1 bg-white rounded-2xl shadow-2xl p-8 h-[calc(100vh-100px)] overflow-y-auto animate-fade-in-up text-lg">
+        <div class="flex justify-between items-start mb-6">
           <div>
-            <h2 class="text-2xl font-bold w-70 text-gray-800">{{ selectedVaga.title }}</h2>
-            <a href="#" class="text-blue-600 hover:underline font-medium mt-1 inline-block">Empresa</a>
-            <p class="text-sm text-gray-500 flex items-center gap-1 mt-1">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <h2 class="text-3xl font-bold w-70 text-gray-800">{{ selectedVaga.title }}</h2>
+            <a class="text-blue-600 hover:underline font-semibold mt-2 inline-block text-xl">{{ selectedVaga.businessName }}</a>
+            <p class="text-base text-gray-500 flex items-center gap-2 mt-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M17.657 16.657L13.414 12.414A4 4 0 1116 9.414l4.243 4.243a1 1 0 01-1.414 1.414z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -100,12 +116,12 @@
           </div>
 
           <button
-            class="px-6 py-2 rounded-lg font-medium flex items-center gap-2 transition
+            class="px-7 py-3 rounded-lg font-semibold flex items-center gap-2 transition
                    bg-blue-600 text-white hover:bg-blue-700
-                   disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-70"
+                   disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-70 text-lg"
             [disabled]="jaAplicouNaVaga()"
             (click)="aplicarNaVaga()">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
@@ -113,20 +129,20 @@
           </button>
         </div>
 
-        <div *ngIf="jaAplicouNaVaga()" class="mt-4 px-4 py-2 rounded-lg bg-red-400 text-black-700 flex items-center gap-2 font-semibold shadow">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div *ngIf="jaAplicouNaVaga()" class="mt-4 px-5 py-3 rounded-lg bg-red-400 text-black-700 flex items-center gap-2 font-semibold shadow text-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M5 13l4 4L19 7"/>
           </svg>
           Você já se candidatou a esta vaga!
         </div>
 
-        <hr class="my-4"/>
+        <hr class="my-6"/>
 
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-2">🎯 Requisitos do perfil</h3>
-          <p class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-3">🎯 Requisitos do perfil</h3>
+          <p class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 14l9-5-9-5-9 5 9 5z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -137,8 +153,8 @@
         </div>
 
         <div>
-          <h3 class="text-lg font-semibold mb-2">📋 Dados da vaga</h3>
-          <ul class="text-sm space-y-2">
+          <h3 class="text-xl font-semibold mb-3">📋 Dados da vaga</h3>
+          <ul class="text-lg space-y-3">
             <li><strong>Tipo de vaga:</strong> {{ selectedVaga.type | titlecase }}</li>
             <li><strong>Turno:</strong> {{ selectedVaga.shift }}</li>
             <li><strong>Remuneração:</strong> R$ {{ selectedVaga.salary | number:'1.2-2' }}</li>
@@ -150,7 +166,7 @@
       </section>
 
       <section *ngIf="!selectedVaga"
-               class="flex-1 bg-white rounded-xl shadow p-6 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-lg animate-fade-in-up">
+           class="flex-1 bg-white rounded-xl shadow p-8 h-[calc(100vh-100px)] overflow-y-auto flex items-center justify-center text-gray-400 text-2xl animate-fade-in-up">
         Selecione uma vaga para ver os detalhes.
       </section>
     </main>

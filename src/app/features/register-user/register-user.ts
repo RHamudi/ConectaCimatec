@@ -20,6 +20,7 @@ export class RegisterUser {
       name: ['', Validators.required],
       email: ['', Validators.required, , Validators.email],
       password: ['', [Validators.required]],
+      privacyPolicy: [false, Validators.requiredTrue]
     });
   }
 

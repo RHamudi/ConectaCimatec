@@ -32,6 +32,11 @@ export class RegisterNewJob {
   }
   
   onSubmit() {
+    let businessName = '';
+    var business = localStorage.getItem('business');
+    if(business) {
+      businessName = JSON.parse(business).companyName; // Assuming the business name is stored in localStorage
+    }
     let skillsArray = this.userForm.value.skills.split(',').map((skill: string) => skill.trim()); // Convertendo string para array
     console.log(skillsArray);
     const businessData: Business = {
@@ -45,6 +50,7 @@ export class RegisterNewJob {
       Requirements: this.userForm.value.Requirements,
       deadline: this.userForm.value.deadline,
       status: this.userForm.value.status,
+      businessName: businessName,
     };
 
     if (this.userForm.valid) {

@@ -1,4 +1,4 @@
-<header *ngIf="route == '' || route == 'homeEmpresa'" class="bg-white shadow-md sticky top-0 z-50 h-16 flex justify-between items-center px-10 md:px-20">
+<header *ngIf="route == '' || route == 'homeEmpresa'" class="bg-white shadow-md sticky top-0 z-50 h-16 flex justify-between items-center px-10 md:px-20 text-lg md:text-xl">
   
   <!-- Navegação principal -->
   <nav class="h-full flex items-center">
@@ -10,7 +10,7 @@
           [routerLink]="['']"
           [routerLinkActiveOptions]="{ exact: true }"
           routerLinkActive="text-blue-700 font-medium"
-          class="relative flex items-center h-full px-2 text-gray-700 group transition"
+          class="relative flex items-center h-full px-2 text-gray-700 group transition text-lg md:text-xl"
         >
           Para Você
           <span
@@ -29,7 +29,7 @@
           [routerLink]="['/homeEmpresa']"
           [routerLinkActiveOptions]="{ exact: true }"
           routerLinkActive="text-blue-700 font-medium"
-          class="relative flex items-center h-full px-2 text-gray-700 group transition"
+          class="relative flex items-center h-full px-2 text-gray-700 group transition text-lg md:text-xl"
         >
           Para Empresas
           <span
@@ -51,7 +51,7 @@
       <li>
         <a 
           [routerLink]="['/login']" 
-          class="px-2 flex items-center h-full hover:text-blue-700 transition"
+          class="px-2 flex items-center h-full hover:text-blue-700 transition text-lg md:text-xl"
         >
           Entrar
         </a>
@@ -59,7 +59,7 @@
       <li>
         <a 
           [routerLink]="router.url.includes('homeEmpresa') ? '/registerBusiness' : '/register'" 
-          class="px-2 flex items-center h-full hover:text-blue-700 transition font-medium"
+          class="px-2 flex items-center h-full hover:text-blue-700 transition font-medium text-lg md:text-xl"
         >
           {{ router.url.includes('homeEmpresa') ? 'Cadastre sua empresa' : 'Cadastrar' }}
         </a>
@@ -68,9 +68,9 @@
   </div>
 </header>
 
-<header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness'" class="w-full h-16 bg-white shadow-md flex items-center justify-center px-6">
+<header *ngIf="route == 'login' || route == 'register' || route == 'registerBusiness'" class="w-full h-16 bg-white shadow-md flex items-center justify-center px-6 text-lg md:text-xl">
   <h1 
-    class="text-xl font-bold text-blue-700 cursor-pointer hover:underline transition"
+    class="text-xl md:text-2xl font-bold text-blue-700 cursor-pointer hover:underline transition"
     (click)="navigateToHome()"
   >
     ConectaCimatec
@@ -79,16 +79,16 @@
 
 <header
   *ngIf="isLoggedRole === 'aluno' && (route === 'jobExplorer' || route === 'profile')"
-  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all"
+  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all text-lg md:text-xl"
 >
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
+    <h1 class="text-2xl md:text-3xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
       Conecta<span class="text-gray-800">Cimatec</span>
     </h1>
 
     <div class="flex gap-4 items-center">
       <span
-        class="text-sm text-gray-700 cursor-pointer hover:text-blue-600 transition"
+        class="text-sm md:text-lg text-gray-700 cursor-pointer hover:text-blue-600 transition"
         (click)="navigateToProfile()"
       >
         Bem-vindo, <strong>{{ getUserName() }}</strong>
@@ -96,7 +96,7 @@
 
       <button
         type="button"
-        class="text-sm text-red-600 font-medium hover:underline hover:text-red-700 transition"
+        class="text-sm md:text-lg text-red-600 font-medium hover:underline hover:text-red-700 transition"
         (click)="logOut()"
       >
         Sair
@@ -105,36 +105,35 @@
   </div>
 </header>
 
-
 <header
-  *ngIf="isLoggedRole === 'empresa' && (route === 'publishedJobs' || route === 'registerNewJob')"
-  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all"
+  *ngIf="isLoggedRole === 'empresa' && (route === 'publishedJobs' || route === 'registerNewJob' || route === 'editJob')"
+  class="bg-white border-b shadow-md sticky top-0 z-50 transition-all text-lg md:text-xl"
 >
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
+    <h1 class="text-2xl md:text-3xl font-bold text-blue-600 tracking-tight hover:opacity-90 transition">
       Conecta<span class="text-gray-800">Cimatec</span>
     </h1>
 
     <div class="flex gap-4 items-center">
       <span
-        class="text-sm text-gray-700 cursor-default"
+        class="text-sm md:text-lg text-gray-700 cursor-default"
       >
       Bem-vindo, <strong>{{ getUserName() }}</strong>
       </span>
 
       <button
-        *ngIf="route != 'registerNewJob'"
+        *ngIf="route != 'registerNewJob' && route != 'editJob'"
         type="button"
-        class="text-sm text-red-600 font-medium hover:underline hover:text-red-700 transition"
+        class="text-sm md:text-lg text-red-600 font-medium hover:underline hover:text-red-700 transition"
         (click)="logOut()"
       >
         Sair
       </button>
 
       <button
-      *ngIf="route === 'registerNewJob'"
+      *ngIf="route === 'registerNewJob' || route === 'editJob'"
       >
-        <a [routerLink]="['/publishedJobs']" class="text-sm text-blue-600 font-medium hover:underline hover:text-blue-700 transition">
+        <a [routerLink]="['/publishedJobs']" class="text-sm md:text-lg text-blue-600 font-medium hover:underline hover:text-blue-700 transition">
           Voltar
         </a>
       </button>

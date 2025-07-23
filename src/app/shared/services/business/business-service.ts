@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Database, equalTo, get, orderByChild, push, query, ref, set, update } from '@angular/fire/database';
 import { Business, Vaga } from '../../../core/models/business/business';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +72,17 @@ export class BusinessService {
     });
 
     return worksList;
+  }
+
+  getJobById(jobId: string): Observable<any> {
+    const jobRef = ref(this.db, `works/${jobId}`);
+    return from(get(jobRef)).pipe(
+      map(snapshot => snapshot.exists() ? snapshot.val() : null)
+    );
+  }
+
+  updateJob(jobId: string, jobData: any): Observable<void> {
+    const jobRef = ref(this.db, `works/${jobId}`);
+    return from(update(jobRef, jobData));
   }
 }

@@ -5,17 +5,22 @@ import { Vaga } from '../../core/models/business/business';
 import { CommonModule } from '@angular/common';
 import { Database, ref, get, update } from '@angular/fire/database';
 import { Auth } from '../../shared/services/auth/auth';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-job-explorer',
-  imports: [Navbar, CommonModule],
+  imports: [Navbar, CommonModule, FormsModule],
   templateUrl: './job-explorer.html',
   styleUrl: './job-explorer.css'
 })
 export class JobExplorer {
   publishedJobs: Vaga[] = [];
+  filteredJobs: Vaga[] = [];
   selectedVaga: Vaga | null = null;
   userSkills: string[] = [];
+  filterModalidade: string = '';
+  filterTurno: string = '';
+  filterStatus: string = '';
   private db = inject(Database);
   private auth = inject(Auth);
 
@@ -24,6 +29,7 @@ export class JobExplorer {
   ngOnInit() {
     this.businessService.getAllWorks().then((data) => {
       this.publishedJobs = data;
+      this.filteredJobs = data;
     });
     
     const storedUser = localStorage.getItem('user');
@@ -35,7 +41,6 @@ export class JobExplorer {
 
   selectVaga(vaga: Vaga) {
     this.selectedVaga = vaga;
-    console.log(this.jaAplicouNaVaga());
   }
 
   calculateMatch(vagaSkills: string[]): number {
@@ -85,8 +90,8 @@ export class JobExplorer {
       // Atualiza as vagas após aplicar
       this.businessService.getAllWorks().then((data) => {
         this.publishedJobs = data;
-        // Atualiza a vaga selecionada para refletir as novas aplicações
-        this.selectedVaga = this.publishedJobs.find(v => v.uid === vagaUid) || null;
+        this.filtrarVagas(); // Atualiza filtragem após aplicar
+        this.selectedVaga = this.filteredJobs.find(v => v.uid === vagaUid) || null;
       });
 
       alert('Aplicação enviada com sucesso!');
@@ -106,4 +111,18 @@ export class JobExplorer {
     return applications.some((app: any) => app.userUid === this.auth.currentUser?.uid);
   }
 
+  filtrarVagas() {
+    this.filteredJobs = this.publishedJobs.filter(vaga => {
+      const modalidadeOk = !this.filterModalidade || vaga.type.toLowerCase() === this.filterModalidade.toLowerCase();
+      const turnoOk = !this.filterTurno || vaga.shift.toLowerCase() === this.filterTurno.toLowerCase();
+      const statusOk = !this.filterStatus || vaga.status.toLowerCase() === this.filterStatus.toLowerCase();
+
+      return modalidadeOk && turnoOk && statusOk;
+    });
+
+    // Se a vaga selecionada não estiver mais nos resultados, deseleciona
+    if (this.selectedVaga && !this.filteredJobs.some(v => v.uid === this.selectedVaga?.uid)) {
+      this.selectedVaga = null;
+    }
+  }
 }

@@ -1,0 +1,95 @@
+<header class="bg-white border-b shadow-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold md:text-3xl text-blue-600 tracking-tight hover:opacity-90 transition duration-200">
+      Conecta<span class="text-gray-800">Cimatec</span>
+    </h1>
+
+    <a
+      [routerLink]="['/publishedJobs']"
+      class="text-xl text-blue-600 font-medium hover:underline hover:text-blue-700 transition duration-200 flex items-center gap-1"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Voltar
+    </a>
+  </div>
+</header>
+
+<div class="min-h-screen bg-blue-50 p-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Título da Página -->
+    <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Dashboard da Vaga</h2>
+
+    <!-- Cabeçalho -->
+    <div class="bg-white p-6 rounded-2xl shadow-md mb-6">
+      <h1 class="text-3xl font-bold text-blue-800">{{ vaga.title }}</h1>
+      <p class="text-base text-gray-700 mt-2">
+        {{ vaga.description | slice:0:200 }}{{ vaga.description.length > 200 ? '...' : '' }}
+      </p>
+
+      <div class="flex flex-wrap mt-4 gap-4 text-base text-gray-700">
+        <div><strong>Empresa:</strong> {{ vaga.companyName }}</div>
+        <div><strong>Localização:</strong> {{ vaga.location }}</div>
+        <div><strong>Turno:</strong> {{ vaga.shift }}</div>
+        <div><strong>Tipo:</strong> {{ vaga.type }}</div>
+        <div><strong>Salário:</strong> R$ {{ vaga.salary }}</div>
+        <div><strong>Status:</strong> {{ vaga.status }}</div>
+      </div>
+
+      <div class="mt-4">
+        <span class="font-semibold text-gray-700">Requisitos:</span>
+        <p class="text-gray-700 text-base">{{ vaga.requirements }}</p>
+      </div>
+
+      <div class="mt-4">
+        <span class="font-semibold text-gray-700">Skills:</span>
+        <div class="flex flex-wrap gap-2 mt-1">
+          <span *ngFor="let skill of vaga.skills" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-base">
+            {{ skill }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Painel lateral e candidatos -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Painel Resumo -->
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-4">Resumo</h2>
+        <ul class="text-gray-700 space-y-2 text-base">
+          <li><strong>Deadline:</strong> {{ vaga.deadline }}</li>
+          <li><strong>Status:</strong> {{ vaga.status }}</li>
+          <li><strong>Candidaturas:</strong> {{ candidatos.length }}</li>
+        </ul>
+      </div>
+
+      <!-- Lista de Candidatos com scroll -->
+      <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-md max-h-[600px] overflow-y-auto">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-4">Candidatos</h2>
+
+        <div *ngIf="candidatos.length === 0" class="text-gray-500 italic text-base">Nenhuma candidatura ainda.</div>
+
+        <div *ngFor="let candidato of candidatos" class="border border-gray-200 rounded-xl p-4 mb-4">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-semibold text-gray-800">{{ candidato.name }}</h3>
+            <span class="text-sm text-gray-500">{{ candidato.appliedAt }}</span>
+          </div>
+          <p class="text-base text-gray-700"><strong>Email:</strong> {{ candidato.email }}</p>
+          <p class="text-base text-gray-700"><strong>Localização:</strong> {{ candidato.localizacao }}</p>
+          <p class="text-base text-gray-700"><strong>Site:</strong> {{ candidato.site }}</p>
+          <p class="text-base text-gray-700"><strong>Descrição:</strong> {{ candidato.descricao }}</p>
+
+          <div class="mt-2">
+            <span class="text-base font-medium text-gray-600">Skills:</span>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span *ngFor="let skill of candidato.skills" class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

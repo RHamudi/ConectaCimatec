@@ -40,5 +40,9 @@ export const routes: Routes = [
     {
         path: 'editJob/:id',
         loadComponent: () => import('./features/edit-job/edit-job').then(m => m.EditJob)
+    },
+    {
+        path: 'jobDetails/:id',
+        loadComponent: () => import('./features/job-details/job-details').then(m => m.JobDetails)
     }
 ];

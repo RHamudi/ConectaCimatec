@@ -18,7 +18,7 @@
         <ng-container *ngIf="publishedJobs?.length; else noJobs">
           <div class="grid gap-7">
           <ng-container *ngIf="publishedJobs?.length; else noJobs">
-            <div *ngFor="let vaga of publishedJobs" class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition duration-200">
+            <div *ngFor="let vaga of publishedJobs" [routerLink]="[`/jobDetails/${vaga.uid}`]" class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition duration-200">
               
               <!-- Topo do card: título + botão Editar -->
               <div class="flex justify-between items-start flex-wrap gap-6">

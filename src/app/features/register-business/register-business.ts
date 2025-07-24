@@ -37,7 +37,7 @@ export class RegisterBusiness {
 
     if (this.userForm.valid) {
       this.authService.addBusiness(business).then(() => {
-        
+        this.router.navigate(['/login']);
       }).catch((error) => {
         console.error('Error registering business:', error);
       }); 

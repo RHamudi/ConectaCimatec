@@ -28,4 +28,13 @@ export class JobDetails {
       }
     }
   }
+
+  calculateMatch(vagaSkills: string[], candidado: any[]): number {
+    if (!candidado.length || !vagaSkills?.length) return 0;
+    const userSet = new Set(candidado.map(s => s.toLowerCase()));
+    const vagaSet = vagaSkills.map(s => s.toLowerCase());
+    const matchCount = vagaSet.filter(skill => userSet.has(skill)).length;
+    const total = vagaSet.length;
+    return Math.round((matchCount / total) * 100);
+  }
 }
